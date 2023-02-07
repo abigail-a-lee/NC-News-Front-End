@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import moment from "moment";
 import ArticleBox from "./ArticleBox";
 import LoadingScreen from "./common/LoadingScreen";
 import { useParams } from "react-router-dom";

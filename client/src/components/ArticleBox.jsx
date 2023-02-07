@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { DownVote, UpVote } from "./common/Voting";
 import moment from "moment";
 
@@ -45,7 +45,7 @@ function ArticleBox({ data, handleTitleClick, category }) {
                   Posted by {article.author}
                 </span>
                 <time
-                  pubdate
+                  
                   dateTime={article.created_at}
                   title={date(article.created_at)}
                   className="text-neutral-700 text-xs"
@@ -53,22 +53,22 @@ function ArticleBox({ data, handleTitleClick, category }) {
                   {fromNow(article.created_at)}
                 </time>
               </figcaption>
-              <article class="my-1">
-                <header class="text-xl text-neutral-300">
+              <article className="my-1">
+                <header className="text-xl text-neutral-300">
                   {article.title}
                 </header>
-                <div class="relative">
-                  <div class="absolute bottom-[1px] bg-gradient-to-b from-transparent to-neutral-900 w-[100%] h-[45%]"></div>
-                  <p class="text-neutral-400 font-light max-h-[150px] py-2 text-ellipsis overflow-hidden">
+                <div className="relative">
+                  <div className="absolute bottom-[1px] bg-gradient-to-b from-transparent to-neutral-900 w-[100%] h-[45%]"></div>
+                  <p className="text-neutral-400 font-light max-h-[150px] py-2 text-ellipsis overflow-hidden">
                     {article.body}
                   </p>
                 </div>
 
-                <footer class="flex text-neutral-600 text-xs mt-2 font-bold">
-                  <span class="hoverable flex">
+                <footer className="flex text-neutral-600 text-xs mt-2 font-bold">
+                  <span className="hoverable flex">
                     <svg
                       aria-hidden="true"
-                      class="mr-1 w-4 h-4"
+                      className="mr-1 w-4 h-4"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
