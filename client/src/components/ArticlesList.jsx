@@ -9,7 +9,6 @@ function ArticlesList({ handleTitleClick }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { category } = useParams();
-console.log(category);
 
   useEffect(() => {
     setLoading(true);
@@ -21,7 +20,6 @@ console.log(category);
       )
       .then((response) => {
         setLoading(false);
-        console.log("rrrr", response);
         setData(response.data.articles);
       });
   }, [category]);

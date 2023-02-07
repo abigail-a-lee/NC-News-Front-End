@@ -14,7 +14,7 @@ function ArticleBox({ data, handleTitleClick, category }) {
     <main className="flex-row mx-auto max-w-[800px] ">
       <section className="flex-col">
         {data.map((article, index) => (
-          <div className="flex my-4 ring-1 ring-neutral-800 hover:ring-neutral-600 rounded-md overflow-hidden subtleHoverable">
+          <div key={index} className="flex my-4 ring-1 ring-neutral-800 hover:ring-neutral-600 rounded-md overflow-hidden subtleHoverable">
             <aside className="flex-col bg-[#0f1010] min-w-[35px] pt-3 text-neutral-400 place-content-center text-center">
               <div className="absolute">
                 <UpVote />
