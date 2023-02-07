@@ -121,7 +121,7 @@ function NavBar() {
             <li>
               <span className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent  md:p-0 dark:text-neutral-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-plum md:dark:hover:bg-transparent dark:border-gray-700">
                 <Link to="/articles/all" onClick={toggleMobileMenu}>
-                  Threads
+                  Articles
                 </Link>
               </span>
             </li>

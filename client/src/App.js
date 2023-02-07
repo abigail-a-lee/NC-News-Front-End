@@ -8,10 +8,14 @@ import ArticlesList from "./components/ArticlesList";
 import ArticlesDetails from "./components/ArticlesDetails";
 import Users from "./components/Users";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const navigate = useNavigate();
+  const handleTitleClick = (category = "/all", id = "") => {
+    navigate(`/articles${category}${id}`);
+  };
 
   return (
     <div className={`${isDarkMode ? "dark" : ""}`}>
@@ -22,7 +26,10 @@ function App() {
         <div className="py-10 mt-20 px-4">
           <Routes>
             <Route path="/" element={<Splash />} />
-            <Route path="/articles/all" element={<ArticlesList />} />
+            <Route
+              path="/articles/:category"
+              element={<ArticlesList handleTitleClick={handleTitleClick} />}
+            />
             <Route path="/users" element={<Users />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
