@@ -9,5 +9,9 @@ const axiosClient = axios.create({
   });
 
 export function getArticles(topic){
-    return axiosClient.get(`/articles?topic=${topic}`);
+    return axiosClient.get(`/articles${topic === 'all' ? '' : '?=' + topic}`);
+}
+
+export function getArticleById(id){
+  return axiosClient.get(`/articles/${id}`);
 }
