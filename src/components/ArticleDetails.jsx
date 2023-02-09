@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getArticleById, getCommentsById } from "../utils/api";
-import { UpVote, DownVote } from "./common/Voting";
+import Voting from "./common/Voting";
 import moment from "moment";
 import Comments from "./Comments";
 import LoadingScreen from "./common/LoadingScreen";
@@ -41,9 +41,7 @@ function ArticleDetails({ handleTitleClick }) {
       <section className="flex flex-row drop-shadow-md mx-auto pt-3 pb-6 dark:bg-neutral-900 text-base rounded-md">
         <aside className="pr-10 text-neutral-400 place-content-center text-center">
               <div className="absolute">
-                <UpVote />
-                {articleData.votes}
-                <DownVote />
+              <Voting id={articleData.article_id} votes={articleData.votes} />
               </div>
             </aside>
             <article className="flex-col flex"> 
@@ -97,9 +95,9 @@ function ArticleDetails({ handleTitleClick }) {
 
       </section>
       <section className="bg-neutral-900 p-1 my-4 rounded-md">
-      <hr class="mt-10 solid max-w-8xl mx-12"></hr>
-            <div class="flex justify-between items-center mb-6">
-              <h2 class="text-lg pt-4 lg:text-2xl mx-12 font-bold text-neutral-900 dark:text-neutral-600">
+      <hr className="mt-10 solid max-w-8xl mx-12"></hr>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-lg pt-4 lg:text-2xl mx-12 font-bold text-neutral-900 dark:text-neutral-600">
                 Comments
               </h2>
             </div>
