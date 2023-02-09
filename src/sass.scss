@@ -1,0 +1,132 @@
+.actions {
+    display: flex;
+  }
+  
+  .action {
+    --button-size: 26px;
+    --bubble-size: 28px;
+    --bubble-shift: 10px;
+    --bubble-offset: calc((var(--bubble-size) + var(--bubble-shift)) * -1);
+    --circle-size: 5px;
+    --circle-anchor: 20px;
+    --color-plus: #19C157;
+    --color-minus: #FE2D6C;
+   
+    position: relative;
+    line-height: var(--button-size);
+    margin: 0 8px;
+    text-align: center;
+    cursor: pointer;
+    color: #323232;
+    
+    &.animated {
+      --circle-anchor: 48px;
+  
+      &::before,
+      &::after {
+        visibility: visible;
+      }
+      &::before {
+        animation: bubbleAnimation 1s forwards;
+      }
+      &::after {
+        opacity: 0;
+      }
+    }
+    
+    &.plus::before {
+      content: '+1';
+    }
+  
+    &.minus::before {
+      content: '-1';
+    }
+  
+    &.voted {
+      &.plus {
+        color: var(--color-plus);
+      }
+  
+      &.minus {
+        color: var(--color-minus);
+      }
+    }
+    
+    &:hover {
+      &.plus {
+        color: var(--color-plus);
+      }
+  
+      &.minus {
+        color: var(--color-minus);
+      }
+    }
+    
+    &::before,
+    &::after {
+      position: absolute;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  
+    /* Bubble */
+    &::before {
+      z-index: 8;
+      top: var(--bubble-offset);
+      left: 50%;
+      width: var(--bubble-size);
+      height: var(--bubble-size);
+      line-height: var(--bubble-size);
+      text-align: center;
+      background-color: #333;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+   
+    /* Circles */
+    &::after {
+      --circle-corner: 1.4;
+      --circle-anchor-corner: calc(var(--circle-anchor) / var(--circle-corner));
+      content: '';
+      top: calc(var(--bubble-size) / 2 - var(--circle-size) / 2);
+      left: calc(var(--bubble-size) / 2 - var(--circle-size) / 2);
+      transform: translateY(var(--bubble-offset)) rotate(22.5deg);
+      width: var(--circle-size);
+      height: var(--circle-size);
+      border-radius: 50%;
+      background-color: transparent;
+      box-shadow: 0 calc(var(--circle-anchor) * -1) 0 0,
+                  var(--circle-anchor-corner) calc(var(--circle-anchor-corner) * -1) 0 0,
+                  var(--circle-anchor) 0 0 0,
+                  var(--circle-anchor-corner) var(--circle-anchor-corner) 0 0,
+                  0 var(--circle-anchor) 0 0,
+                  calc(var(--circle-anchor) * -1) 0 0 0,
+                  calc(var(--circle-anchor-corner) * -1) var(--circle-anchor-corner) 0 0,
+                  calc(var(--circle-anchor-corner) * -1) calc(var(--circle-anchor-corner) * -1) 0 0;
+      transition: box-shadow cubic-bezier(0, 0, 0.5, 1.15) 0.25s,
+                  opacity ease-out 0.25s;
+    }
+  }
+
+  @keyframes bubbleAnimation {
+    0% {
+      opacity: 0.2;
+      transform: translate(-0%, 4px);
+    }
+    20%, 75% { 
+      opacity: 1;
+      transform: translate(-0%, 0);
+    }
+    80% { 
+      opacity: 0.6;
+      transform: translate(-0%, -2px);
+    }
+    95% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-0%, -20px);
+    }
+  }
