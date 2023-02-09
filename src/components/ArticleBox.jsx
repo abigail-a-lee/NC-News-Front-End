@@ -11,12 +11,12 @@ function fromNow(value) {
 
 function ArticleBox({ data, handleTitleClick, category }) {
   return (
-    <main className="flex-row flex mx-auto max-w-[800px] text-xs md:text-sm">
+    <main className="flex-row flex mx-auto  text-xs md:text-sm">
       <section className="">
         {data.map((article, index) => (
           <div
             key={index}
-            className="flex my-4 ring-1 ring-neutral-800 hover:ring-neutral-600 rounded-md overflow-hidden subtleHoverable"
+            className="bg-neutral-900 flex flex-row my-4 ring-1 ring-neutral-800 hover:ring-neutral-600 rounded-md overflow-hidden subtleHoverable"
           >
             <aside className="flex-col bg-[#0f1010] min-w-[35px] pt-3 text-neutral-400 place-content-center text-center">
               <div className="absolute">
@@ -31,7 +31,7 @@ function ArticleBox({ data, handleTitleClick, category }) {
                 handleTitleClick(category, id);
               }}
             >
-              <figcaption className="flex">
+              <figcaption className="flex flex-col">
                 <header>
                   <p className="pb-1">
                     <span
@@ -59,23 +59,15 @@ function ArticleBox({ data, handleTitleClick, category }) {
                     {article.title}
                   </h3>
                 </header>
-                <aside className="my-2" style={{ marginLeft: "auto" }}>
-                  {article.article_img_url && (
-                    <img
-                      className="drop-shadow-md rounded-md w-[13vw] max-w-[100px] object-contain"
-                      src={article.article_img_url}
-                      alt=""
-                      style={{ alignSelf: "flex-start" }}
-                    ></img>
-                  )}
-                </aside>
+                <summary className="">
+                  <div className="relative">
+                    <div className="absolute bottom-[1px] bg-gradient-to-b from-transparent to-neutral-900 w-[100%] h-[45%]"></div>
+                    <p className="text-neutral-400 font-light max-h-[150px] py-2 text-ellipsis overflow-hidden">
+                      {article.body}
+                    </p>
+                  </div>
+                </summary>
               </figcaption>
-              <div className="relative">
-                <div className="absolute bottom-[1px] bg-gradient-to-b from-transparent to-neutral-900 w-[100%] h-[45%]"></div>
-                <p className="text-neutral-400 font-light max-h-[150px] py-2 text-ellipsis overflow-hidden">
-                  {article.body}
-                </p>
-              </div>
 
               <footer className="flex text-neutral-600 text-xs mt-2 font-bold">
                 <span className="hoverable flex">
@@ -98,6 +90,17 @@ function ArticleBox({ data, handleTitleClick, category }) {
                 </span>
               </footer>
             </div>
+            <section className="my-auto  min-w-[15vw] max-w-[15vw]">
+              <aside className=" flex-col flex justify-start">
+                {article.article_img_url && (
+                  <img
+                    className="p-2 rounded-2xl drop-shadow-md"
+                    src={article.article_img_url}
+                    alt=""
+                  ></img>
+                )}
+              </aside>
+            </section>
           </div>
         ))}
       </section>

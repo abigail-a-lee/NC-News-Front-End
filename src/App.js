@@ -23,7 +23,7 @@ function App() {
         <div className="fixed z-50 w-screen drop-shadow-md">
           <NavBar />
         </div>
-        <div className="py-10 mt-20 mx-1">
+        <div className="py-10 mt-20 mx-auto max-w-[700px]">
           <Routes>
             <Route path="/" element={<Splash />} />
             <Route
