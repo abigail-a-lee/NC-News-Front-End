@@ -5,7 +5,7 @@ import Splash from "./components/Splash";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import ArticlesList from "./components/ArticlesList";
-import ArticlesDetails from "./components/ArticlesDetails";
+import ArticleDetails from "./components/ArticleDetails";
 import Users from "./components/Users";
 
 import { Routes, Route, useNavigate } from "react-router-dom";
@@ -29,6 +29,10 @@ function App() {
             <Route
               path="/articles/:topic"
               element={<ArticlesList handleTitleClick={handleTitleClick} />}
+            />
+            <Route
+              path="/articles/:topic/:articleId"
+              element={<ArticleDetails handleTitleClick={handleTitleClick} />}
             />
             <Route path="/users" element={<Users />} />
             <Route path="/about" element={<About />} />
