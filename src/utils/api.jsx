@@ -15,3 +15,7 @@ export function getArticles(topic){
 export function getArticleById(id){
   return axiosClient.get(`/articles/${id}`);
 }
+
+export function getCommentsById(id){
+  return axiosClient.get(`/articles/${id}/comments`)
+}
