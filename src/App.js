@@ -13,8 +13,8 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const navigate = useNavigate();
-  const handleTitleClick = (category = "/all", id = "") => {
-    navigate(`/articles${category}${id}`);
+  const handleTitleClick = (topic = "/all", id = "") => {
+    navigate(`/articles${topic}${id}`);
   };
 
   return (
@@ -27,7 +27,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Splash />} />
             <Route
-              path="/articles/:category"
+              path="/articles/:topic"
               element={<ArticlesList handleTitleClick={handleTitleClick} />}
             />
             <Route path="/users" element={<Users />} />
