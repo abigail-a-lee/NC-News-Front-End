@@ -33,9 +33,9 @@ function ArticleBox({ data, handleTitleClick, category }) {
             >
               <figcaption className="flex flex-col">
                 <header>
-                  <p className="pb-1">
+                  <p className="pb-1 text-xs md:text-sm">
                     <span
-                      className="mr-1 text-xs md:text-sm text-neutral-300 hover:underline"
+                      className="mr-1 text-xs text-neutral-300 hover:underline"
                       onClick={(e) => {
                         e.stopPropagation();
                         const category = `/${article.topic}`;
@@ -50,19 +50,19 @@ function ArticleBox({ data, handleTitleClick, category }) {
                     <time
                       dateTime={article.created_at}
                       title={date(article.created_at)}
-                      className="text-neutral-700 text-xs"
+                      className="text-neutral-700 text-[0px] md:text-xs"
                     >
                       {fromNow(article.created_at)}
                     </time>
                   </p>
-                  <h3 className="text-lg md:text-xl flex-row flex text-neutral-300 ">
+                  <h3 className="text-sm md:text-xl flex-row flex text-neutral-300">
                     {article.title}
                   </h3>
                 </header>
                 <summary className="">
                   <div className="relative">
                     <div className="absolute bottom-[1px] bg-gradient-to-b from-transparent to-neutral-900 w-[100%] h-[45%]"></div>
-                    <p className="text-neutral-400 font-light max-h-[150px] py-2 text-ellipsis overflow-hidden">
+                    <p className="min-h-[110px] text-neutral-400 font-light max-h-[150px] py-2 text-ellipsis overflow-hidden">
                       {article.body}
                     </p>
                   </div>
@@ -90,11 +90,11 @@ function ArticleBox({ data, handleTitleClick, category }) {
                 </span>
               </footer>
             </div>
-            <section className="my-auto  min-w-[15vw] max-w-[15vw]">
-              <aside className=" flex-col flex justify-start">
+            <section className=" md:my-auto max-w-[28vw] min-w-[28vw] min-h-[30vh]  md:min-w-[15vw] md:min-h-[15vh] md:max-w-[15vw]">
+              <aside className="flex-col flex justify-start">
                 {article.article_img_url && (
                   <img
-                    className="p-2 rounded-2xl drop-shadow-md"
+                    className="p-4"
                     src={article.article_img_url}
                     alt=""
                   ></img>

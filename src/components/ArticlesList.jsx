@@ -11,11 +11,10 @@ function ArticlesList({ handleTitleClick }) {
 
   useEffect(() => {
     setLoading(true);
-    getArticles(topic)
-      .then((response) => {
-        setLoading(false);
-        setData(response.data.articles);
-      });
+    getArticles(topic).then((response) => {
+      setLoading(false);
+      setData(response.data.articles);
+    });
   }, [topic]);
 
   if (loading) {
@@ -24,7 +23,7 @@ function ArticlesList({ handleTitleClick }) {
 
   return (
     <>
-      <h1 className="flex-row mx-auto max-w-[800px] text-shadow shadow-neutral-500 text-3xl text-neutral-300">
+      <h1 className="flex-row mx-auto text-shadow shadow-neutral-500 text-3xl text-neutral-300">
         {topic === "all" ? "All topics" : topic}
       </h1>
       <ArticleBox
