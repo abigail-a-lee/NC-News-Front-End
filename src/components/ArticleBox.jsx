@@ -11,8 +11,8 @@ function fromNow(value) {
 
 function ArticleBox({ data, handleTitleClick, category }) {
   return (
-    <main className="flex-row mx-auto max-w-[800px] ">
-      <section className="flex-col">
+    <main className="flex-row flex mx-auto max-w-[800px] ">
+      <section className="">
         {data.map((article, index) => (
           <div key={index} className="flex my-4 ring-1 ring-neutral-800 hover:ring-neutral-600 rounded-md overflow-hidden subtleHoverable">
             <aside className="flex-col bg-[#0f1010] min-w-[35px] pt-3 text-neutral-400 place-content-center text-center">
@@ -62,6 +62,7 @@ function ArticleBox({ data, handleTitleClick, category }) {
                   <p className="text-neutral-400 font-light max-h-[150px] py-2 text-ellipsis overflow-hidden">
                     {article.body}
                   </p>
+
                 </div>
 
                 <footer className="flex text-neutral-600 text-xs mt-2 font-bold">
@@ -85,10 +86,19 @@ function ArticleBox({ data, handleTitleClick, category }) {
                   </span>
                 </footer>
               </article>
+
             </div>
+            <aside className="my-2 flex-col flex relative">
+                  {article.article_img_url && (
+            <img className="absolute drop-shadow-md rounded-full max-w-[90px] top-0 right-2" src={article.article_img_url} alt=''></img>
+          )}
+          </aside>
           </div>
+          
         ))}
+        
       </section>
+
     </main>
   );
 }
