@@ -90,7 +90,7 @@ function ArticleBox({ data, handleTitleClick, category }) {
             </div>
             <aside className="my-2 flex-col flex relative">
                   {article.article_img_url && (
-            <img className="absolute drop-shadow-md rounded-full max-w-[90px] top-0 right-2" src={article.article_img_url} alt=''></img>
+            <img className="absolute drop-shadow-md rounded-md max-w-[90px] top-0 right-2" src={article.article_img_url} alt=''></img>
           )}
           </aside>
           </div>

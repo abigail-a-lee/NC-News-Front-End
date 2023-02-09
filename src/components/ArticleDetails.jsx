@@ -80,7 +80,7 @@ function ArticleDetails({ handleTitleClick }) {
             {articleData.title && <span>{articleData.title}</span>}
           </h3>
           {articleData.article_img_url && (
-            <img className="my-2 rounded-lg drop-shadow-md max-w-[400px]" src={articleData.article_img_url} alt=''></img>
+            <img className="my-4 ring-2 ring-neutral-600 rounded-lg drop-shadow-md max-w-[700px]" src={articleData.article_img_url} alt=''></img>
           )}
           {articleData.body && (
             <p className=" text-neutral-500 dark:text-neutral-500 text-md">
