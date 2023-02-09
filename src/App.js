@@ -18,12 +18,12 @@ function App() {
   };
 
   return (
-    <div className={`${isDarkMode ? "dark" : ""}`}>
+    <div className={`${isDarkMode ? "dark" : ""} max-w-[100vw]`}>
       <div className="pb-2 flex flex-col min-h-screen bg-white dark:bg-gradient-to-br from-[#221425] to-black">
         <div className="fixed z-50 w-screen drop-shadow-md">
           <NavBar />
         </div>
-        <div className="py-10 mt-20 px-4">
+        <div className="py-10 mt-20 mx-1">
           <Routes>
             <Route path="/" element={<Splash />} />
             <Route

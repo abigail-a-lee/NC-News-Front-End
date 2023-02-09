@@ -1,16 +1,60 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import { patchArticleById } from "../../utils/api";
 
-function UpVote() {
-  const actionRef = useRef(null);
-  const handleClick = () => {
-    actionRef.current.classList.remove("animated", "voted");
-    actionRef.current.classList.add("animated", "voted");
+
+function Voting({id, votes}) {
+  const [votesNumber, setVotesNumber] = useState(votes);
+  const [isUpVoted, setIsUpVoted] = useState(false);
+  const [isDownVoted, setIsDownVoted] = useState(false);
+
+  const upRef = useRef(null);
+  const downRef = useRef(null);
+  const handleClick = (direction) => {
+    if (direction === 'up') {
+      if (isUpVoted) {
+        return;
+      }
+      if (isDownVoted) {
+        downRef.current.classList.remove("animated", "voted");
+        patchArticleById(id, 1);
+        setVotesNumber(votesNumber + 1);
+        setIsDownVoted(false)
+      }
+      else {
+        upRef.current.classList.remove("animated", "voted")
+        upRef.current.classList.add("animated", "voted")
+        setIsUpVoted(true);
+        patchArticleById(id, 1);
+        setVotesNumber(votesNumber + 1);
+      }
+    }
+    
+    if (direction === 'down') {
+      if (isDownVoted) {
+        return;
+      }
+      if (isUpVoted) {
+        upRef.current.classList.remove("animated", "voted");
+        patchArticleById(id, -1);
+        setVotesNumber(votesNumber + -1);
+        setIsUpVoted(false)
+      }
+      else {
+        downRef.current.classList.remove("animated", "voted")
+        downRef.current.classList.add("animated", "voted")
+        setIsDownVoted(true);
+        patchArticleById(id, -1);
+        setVotesNumber(votesNumber + -1);
+      }
+    }
+    
   };
 
   return (
-    <>
+    <main>
+      <section>
       <div className="actions">
-        <div ref={actionRef} className="action plus" onClick={handleClick}>
+        <div ref={upRef} className="action plus" onClick={() => handleClick("up")}>
           <svg
             width="18"
             height="10"
@@ -27,19 +71,9 @@ function UpVote() {
           </svg>
         </div>
       </div>
-    </>
-  );
-}
-
-function DownVote() {
-  const actionRef = useRef(null);
-  const handleClick = () => {
-    actionRef.current.classList.remove("animated", "voted");
-    actionRef.current.classList.add("animated", "voted");
-  };
-
-  return (
-    <div ref={actionRef} className="action minus" onClick={handleClick}>
+      </section>
+      {votesNumber}
+    <div ref={downRef} className="action minus" onClick={() => handleClick("down")}>
       <svg
         width="18"
         height="10"
@@ -53,9 +87,11 @@ function DownVote() {
           d="M0.306778 0.27913C0.704822 -0.103727 1.33787 -0.0914141 1.72072 0.30663L8.97777 7.85156L16.2348 0.30663C16.6177 -0.0914141 17.2507 -0.103727 17.6488 0.27913C18.0468 0.661987 18.0591 1.29503 17.6763 1.69308L10.4192 9.23801C9.63236 10.0561 8.32319 10.0561 7.53633 9.23801L0.279278 1.69308C-0.103578 1.29503 -0.0912663 0.661987 0.306778 0.27913Z"
           fill="currentColor"
         />
+        
       </svg>
     </div>
+    </main>
   );
 }
 
-export { UpVote, DownVote };
+export default Voting;

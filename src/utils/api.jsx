@@ -19,3 +19,10 @@ export function getArticleById(id){
 export function getCommentsById(id){
   return axiosClient.get(`/articles/${id}/comments`)
 }
+
+export function patchArticleById(id, vote){
+  const voteRequest = {
+    "inc_votes": vote
+  }
+  return axiosClient.patch(`/articles/${id}`, voteRequest)
+}
