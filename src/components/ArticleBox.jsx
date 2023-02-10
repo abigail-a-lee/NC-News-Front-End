@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Voting from "./common/Voting";
 import moment from "moment";
 
@@ -9,9 +10,14 @@ function fromNow(value) {
   return moment(value).fromNow();
 }
 
-function ArticleBox({ data, handleTitleClick, category }) {
+function ArticleBox({ data, category }) {
+  const navigate = useNavigate();
+
+  function handleTitleClick(category, articleId = "") {
+    navigate(`/articles${category}${articleId}`);
+  }
   return (
-    <main className="flex-row flex mx-auto  text-xs md:text-sm">
+    <main className="flex-row flex mx-auto text-sm">
       <section className="">
         {data.map((article, index) => (
           <div
@@ -27,8 +33,8 @@ function ArticleBox({ data, handleTitleClick, category }) {
               className="flex-col p-2 bg-neutral-900 inline-block "
               onClick={() => {
                 const category = `/${article.topic}`;
-                const id = `/${article.article_id}`;
-                handleTitleClick(category, id);
+                const articleId = `/${article.article_id}`;
+                handleTitleClick(category, articleId);
               }}
             >
               <figcaption className="flex flex-col">
@@ -59,14 +65,14 @@ function ArticleBox({ data, handleTitleClick, category }) {
                     {article.title}
                   </h3>
                 </header>
-                <summary className="">
+                <article className="">
                   <div className="relative">
                     <div className="absolute bottom-[1px] bg-gradient-to-b from-transparent to-neutral-900 w-[100%] h-[45%]"></div>
                     <p className="min-h-[110px] text-neutral-400 font-light max-h-[150px] py-2 text-ellipsis overflow-hidden">
                       {article.body}
                     </p>
                   </div>
-                </summary>
+                </article>
               </figcaption>
 
               <footer className="flex text-neutral-600 text-xs mt-2 font-bold">
@@ -90,11 +96,11 @@ function ArticleBox({ data, handleTitleClick, category }) {
                 </span>
               </footer>
             </div>
-            <section className=" md:my-auto max-w-[28vw] min-w-[28vw] min-h-[30vh]  md:min-w-[15vw] md:min-h-[15vh] md:max-w-[15vw]">
-              <aside className="flex-col flex justify-start">
+            <section className="md:my-auto  min-w-[25%] min-h-[25%] max-w-[25%]">
+              <aside className="p-2 flex-col flex justify-start">
                 {article.article_img_url && (
                   <img
-                    className="p-4"
+                    className="ring-2 md:ring-4 ring-opacity-20 ring-black rounded-sm drop-shadow-lg"
                     src={article.article_img_url}
                     alt=""
                   ></img>

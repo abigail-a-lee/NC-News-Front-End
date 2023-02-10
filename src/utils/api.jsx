@@ -1,28 +1,34 @@
-import axios from 'axios';
+import axios from "axios";
 
 const axiosClient = axios.create({
-    baseURL: `https://abi-nc-news.onrender.com/api`,
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-  });
+  baseURL: `https://abi-nc-news.onrender.com/api`,
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
+});
 
-export function getArticles(topic){
-    return axiosClient.get(`/articles${topic === 'all' ? '' : '?=' + topic}`);
+export function getArticles(topic = "all") {
+  return axiosClient.get(
+    `/articles${topic === "all" ? "" : "?topic=" + topic}`
+  );
 }
 
-export function getArticleById(id){
+export function getArticleById(id) {
   return axiosClient.get(`/articles/${id}`);
 }
 
-export function getCommentsById(id){
-  return axiosClient.get(`/articles/${id}/comments`)
+export function patchArticleById(id, vote) {
+  const voteRequest = {
+    inc_votes: vote,
+  };
+  return axiosClient.patch(`/articles/${id}`, voteRequest);
 }
 
-export function patchArticleById(id, vote){
-  const voteRequest = {
-    "inc_votes": vote
-  }
-  return axiosClient.patch(`/articles/${id}`, voteRequest)
+export function getCommentsById(id) {
+  return axiosClient.get(`/articles/${id}/comments`);
+}
+
+export function postNewComment(id, newComment) {
+  return axiosClient.post(`/articles/${id}/comments`, newComment);
 }

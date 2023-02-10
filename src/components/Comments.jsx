@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import moment from "moment";
 import avatar from "./common/avatar.jpeg";
 
@@ -9,12 +9,8 @@ function fromNow(value) {
   return moment(value).fromNow();
 }
 
-function Comments({ commentData }) {
-  const [isOpen, setOpen] = useState(false);
-
-  const handleDropDown = () => {
-    setOpen(!isOpen);
-  };
+function Comments({ commentData, setCommentData }) {
+  function handleDelete(id) {}
 
   return (
     <div>
@@ -51,39 +47,29 @@ function Comments({ commentData }) {
             </div>
 
             <button
-              id="dropdownCommentButton"
+              id="DeleteButton"
               data-dropdown-toggle=""
-              className="inline-flex items-center p-2 mr-8 font-medium text-center text-neutral-400 bg-white rounded-lg hover:bg-neutral-100 focus:ring-2 focus:outline-none focus:ring-neutral-500 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:ring-neutral-600"
+              className="inline-flex items-center p-2 mr-8 font-medium text-center text-neutral-400 bg-white rounded-lg hover:bg-neutral-100 focus:ring-2 focus:outline-none focus:ring-neutral-500 dark:bg-neutral-900 hover:text-black hover:bg-red-600 hover:bg-opacity-75 dark:focus:ring-red-600"
               type="button"
-              onClick={handleDropDown}
+              onClick={handleDelete}
             >
               <svg
-                className="w-3 h-3"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
+                className="w-4 h-4 bi bi-trash"
                 xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 16 16"
               >
-                <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                {" "}
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />{" "}
+                <path
+                  fillRule="evenodd"
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                />{" "}
               </svg>
               <span className="sr-only">Comment settings</span>
             </button>
-
-            <div
-              id="dropdownComment1"
-              className={`${
-                isOpen ? "block" : "hidden"
-              } z-10 w-36 bg-white absolute right-0 rounded divide-y divide-neutral-100 shadow dark:bg-neutral-700 dark:divide-neutral-600`}
-            >
-              <ul
-                className="py-1 text-sm text-neutral-700 dark:text-neutral-200"
-                aria-labelledby="dropdownMenuIconHorizontalButton"
-              >
-                <li>Edit</li>
-                <li>Remove</li>
-                <li>Report</li>
-              </ul>
-            </div>
           </footer>
           <div className="mx-4 border-neutral-700 px-6 border-solid border-l-[2px]">
             {comment.body && (

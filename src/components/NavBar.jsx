@@ -10,7 +10,7 @@ function NavBar() {
   }
 
   return (
-    <nav className="h-min bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-neutral-900">
+    <nav className="select-none h-min bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-neutral-900">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
         <Link to="/">
           <div className="flex items-center">
@@ -109,10 +109,7 @@ function NavBar() {
         >
           <ul className="flex flex-col p-4 mt-4   md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 ">
             <li>
-              <span
-                className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent  md:p-0 dark:text-white"
-                aria-current="page"
-              >
+              <span className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent  md:p-0 md:dark:hover:text-white dark:text-neutral-400">
                 <Link to="/" onClick={toggleMobileMenu}>
                   Home
                 </Link>
@@ -120,7 +117,7 @@ function NavBar() {
             </li>
             <li>
               <span className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent  md:p-0 dark:text-neutral-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-plum md:dark:hover:bg-transparent dark:border-gray-700">
-                <Link to="/articles/all" onClick={toggleMobileMenu}>
+                <Link to="/articles" onClick={toggleMobileMenu}>
                   Articles
                 </Link>
               </span>

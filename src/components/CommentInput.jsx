@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 
-function CommentInput() {
+function CommentInput({ commentSubmit }) {
   const [comment, setComment] = useState("");
+  const [username, setUsername] = useState("You");
   const submitHandler = (event) => {
     event.preventDefault();
+    const commentRequest = {
+      username: username,
+      body: comment,
+    };
+    commentSubmit(commentRequest);
+    setComment("");
   };
 
   return (
@@ -25,7 +32,7 @@ function CommentInput() {
         <div className="text-right mx-2">
           <button
             type="submit"
-            className=" py-2.5 px-4 text-xs font-medium text-white bg-purple-400 bg-opacity-25 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-purple-600"
+            className=" py-2.5 px-4 text-xs font-medium text-white bg-purple-400 bg-opacity-25 rounded-lg focus:ring-2 focus:ring-purple-500 dark:focus:ring-primary-900 hover:bg-purple-600"
           >
             Post comment
           </button>

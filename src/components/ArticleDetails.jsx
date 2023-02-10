@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { getArticleById, getCommentsById } from "../utils/api";
+import React, { useState } from "react";
+import { postNewComment } from "../utils/api";
 import Voting from "./common/Voting";
 import moment from "moment";
 import CommentInput from "./CommentInput";
 import Comments from "./Comments";
-import LoadingScreen from "./common/LoadingScreen";
-import { useParams } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 function date(value) {
   return moment(value).format("ddd, MMM Do, YYYY h:mm:ss A");
@@ -14,35 +13,35 @@ function fromNow(value) {
   return moment(value).fromNow();
 }
 
-function ArticleDetails({ handleTitleClick }) {
-  const [articleData, setArticleData] = useState([]);
-  const [commentData, setCommentData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const { articleId } = useParams();
-
-  useEffect(() => {
-    Promise.all([getArticleById(articleId), getCommentsById(articleId)]).then(
-      ([articleResponse, commentsResponse]) => {
-        setArticleData(articleResponse.data.article[0]);
-        setCommentData(commentsResponse.data.comments);
-        setLoading(false);
-      }
-    );
-  }, [articleId]);
-
-  if (loading) {
-    return <LoadingScreen />;
+function ArticleDetails() {
+  const navigate = useNavigate();
+  const data = useLoaderData();
+  const articleData = data.article[0];
+  const comments = data.comments;
+  const [commentData, setCommentData] = useState(comments);
+  function handleTitleClick(category, article_id = "") {
+    navigate(`/articles${category}`);
   }
+  const commentSubmit = (comment) => {
+    const newComment = {
+      author: comment.username,
+      body: comment.body,
+      votes: 0,
+      created_at: new Date().toISOString(),
+    };
+    postNewComment(articleData.article_id, comment);
+    setCommentData([newComment, ...comments]);
+  };
 
   return (
-    <main className="text-md md:text-base max-w-[95vw]">
+    <main className="pt-10 text-md md:text-base animated animatedFadeInUp fadeInUp">
       <section className="flex flex-row drop-shadow-md pt-3 pb-6 dark:bg-neutral-900 rounded-md">
         <aside className="flex-col mx-1 min-w-[40px] text-neutral-400 place-content-center text-center">
           <div className="absolute">
             <Voting id={articleData.article_id} votes={articleData.votes} />
           </div>
         </aside>
-        <article className="flex-col flex max-w-[80%]">
+        <article className="flex-col flex max-w-[90%]">
           <header className="flex-row flex items-center rounded-md pb-1">
             {articleData.topic && (
               <p className="inline-flex text:xs md:text-sm mr-1 text-neutral-900 dark:text-neutral-400">
@@ -81,7 +80,7 @@ function ArticleDetails({ handleTitleClick }) {
           </h3>
           {articleData.article_img_url && (
             <img
-              className="my-4 ring-1 ring-neutral-800 rounded-lg drop-shadow-md max-w-[85vw]"
+              className="my-4 ring-1 ring-neutral-800 rounded-lg drop-shadow-md mx-2"
               src={articleData.article_img_url}
               alt=""
             ></img>
@@ -100,7 +99,7 @@ function ArticleDetails({ handleTitleClick }) {
             Comments
           </h2>
         </div>
-        <CommentInput />
+        <CommentInput commentSubmit={commentSubmit} />
         <Comments commentData={commentData} />
       </section>
     </main>

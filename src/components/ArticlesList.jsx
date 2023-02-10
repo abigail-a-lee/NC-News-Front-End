@@ -1,37 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { getArticles } from "../utils/api";
+import React from "react";
+import { useLoaderData, useParams, Navigate } from "react-router-dom";
 import ArticleBox from "./ArticleBox";
-import LoadingScreen from "./common/LoadingScreen";
-import { useParams } from "react-router-dom";
 
-function ArticlesList({ handleTitleClick }) {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+function ArticlesList() {
   const { topic } = useParams();
+  const data = useLoaderData();
 
-  useEffect(() => {
-    setLoading(true);
-    getArticles(topic).then((response) => {
-      setLoading(false);
-      setData(response.data.articles);
-    });
-  }, [topic]);
-
-  if (loading) {
-    return <LoadingScreen />;
+  if (data.length === 0) {
+    return <Navigate to="/error" />;
   }
 
   return (
-    <>
-      <h1 className="flex-row mx-auto text-shadow shadow-neutral-500 text-3xl text-neutral-300">
-        {topic === "all" ? "All topics" : topic}
+    <main className="animated animatedFadeInUp fadeInUp">
+      <h1 className="select-none flex-row mx-auto text-shadow shadow-neutral-500 text-3xl text-neutral-300">
+        {topic === undefined ? "All articles" : topic}
       </h1>
-      <ArticleBox
-        data={data}
-        handleTitleClick={handleTitleClick}
-        topic={topic}
-      />
-    </>
+      <ArticleBox data={data} topic={topic} />
+    </main>
   );
 }
 

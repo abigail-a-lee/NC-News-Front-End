@@ -4,9 +4,8 @@ import "../App.css";
 
 function Splash() {
   return (
-    <div className="py-8 lg:py-16 mx-auto px-4 text-center">
+    <div className="py-8 lg:py-16 mx-auto px-4 text-center animated animatedFadeInUp fadeInUp">
       <div className="flex-column justify-between items-center mb-2">
-       
         <p className="text-7xl font-semibold opacity-80  bg-gradient-to-tr from-pink-400 to-violet-600 bg-clip-text text-transparent">
           Welcome
         </p>
@@ -35,7 +34,6 @@ function Splash() {
         <p className="text-7xl font-semibold opacity-80  bg-gradient-to-tr from-pink-400 to-violet-600 bg-clip-text text-transparent">
           Welcome
         </p>
-
       </div>
     </div>
   );
