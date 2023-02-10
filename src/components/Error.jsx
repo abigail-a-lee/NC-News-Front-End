@@ -4,7 +4,7 @@ import errorPic from "./common/error.png";
 
 function Error() {
   return (
-    <div className="my-10 flex-col justify-center">
+    <div className="my-10 flex-col justify-center animated animatedFadeInUp fadeInUp">
       <img
         src={errorPic}
         className="h-[400px] mx-auto drop-shadow-md rounded-full ring-2 ring-white shadow-md shadow-white"
@@ -14,9 +14,9 @@ function Error() {
         <p>404: Not Found</p>
         <p>404お探しのページが見つかりませんでした</p>
         <footer className="my-8 ">
-          <p className="hover:text-violet-400 hover:cursor-pointer">
+          <button className="hover:text-black hover:bg-violet-400 bg-violet-800 bg-opacity-50 p-2 rounded-md hover:cursor-pointer">
             <Link to="/">Go home?</Link>
-          </p>
+          </button>
         </footer>
       </div>
     </div>

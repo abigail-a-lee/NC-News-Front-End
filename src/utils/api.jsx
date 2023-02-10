@@ -8,9 +8,15 @@ const axiosClient = axios.create({
   },
 });
 
-export function getArticles(topic = "all") {
+export function getArticles(
+  topic = "all",
+  sort = "created_at",
+  order = "desc"
+) {
   return axiosClient.get(
-    `/articles${topic === "all" ? "" : "?topic=" + topic}`
+    `/articles${
+      topic === "all" ? "?" : "?topic=" + topic + "&"
+    }sort_by=${sort}&order=${order}`
   );
 }
 
@@ -31,4 +37,8 @@ export function getCommentsById(id) {
 
 export function postNewComment(id, newComment) {
   return axiosClient.post(`/articles/${id}/comments`, newComment);
+}
+
+export function deleteComment(id) {
+  return axiosClient.delete(`/comments/${id}`);
 }
