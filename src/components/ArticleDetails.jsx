@@ -32,16 +32,10 @@ function ArticleDetails() {
     navigate(`/articles${category}`);
   }
   const commentSubmit = (comment) => {
-    const newComment = {
-      author: comment.username,
-      body: comment.body,
-      votes: 0,
-      created_at: new Date().toISOString(),
-    };
-    postNewComment(articleData.article_id, comment);
-    setCommentData([newComment, ...comments]);
+    postNewComment(articleData.article_id, comment).then((response) => {
+      setCommentData([response.data.comment[0], ...comments]);
+    });
   };
-  console.log(topic);
 
   if (topic !== articleData.topic) {
     return <Navigate to="/error" />;
