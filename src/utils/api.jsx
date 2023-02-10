@@ -38,3 +38,7 @@ export function getCommentsById(id) {
 export function postNewComment(id, newComment) {
   return axiosClient.post(`/articles/${id}/comments`, newComment);
 }
+
+export function deleteComment(id) {
+  return axiosClient.delete(`/comments/${id}`);
+}

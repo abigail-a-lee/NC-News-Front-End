@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import avatar from "./common/avatar.jpeg";
+import { deleteComment } from "../utils/api";
 
 function date(value) {
   return moment(value).format("ddd, MMM Do, YYYY h:mm:ss A");
@@ -10,8 +11,21 @@ function fromNow(value) {
 }
 
 function Comments({ commentData, setCommentData }) {
-  function handleDelete(id) {}
-
+  function handleDelete(id, author) {
+    if (author !== "You") {
+      alert("Cannot delete others' comments");
+      return;
+    }
+    setCommentData(commentData.filter((comment) => comment.comment_id !== id));
+    deleteComment(id);
+  }
+  if (commentData.length === 0) {
+    return (
+      <div>
+        <p>No comments found</p>
+      </div>
+    );
+  }
   return (
     <div>
       {commentData.map((comment, index) => (
@@ -49,9 +63,13 @@ function Comments({ commentData, setCommentData }) {
             <button
               id="DeleteButton"
               data-dropdown-toggle=""
-              className="inline-flex items-center p-2 mr-8 font-medium text-center text-neutral-400 bg-white rounded-lg hover:bg-neutral-100 focus:ring-2 focus:outline-none focus:ring-neutral-500 dark:bg-neutral-900 hover:text-black hover:bg-red-600 hover:bg-opacity-75 dark:focus:ring-red-600"
+              className={`${comment.author !== "You" ? "hidden" : ""} ${
+                comment.comment_id ? "" : "hidden"
+              } inline-flex items-center p-2 mr-8 font-medium text-center text-neutral-400 bg-white rounded-lg hover:bg-neutral-100 focus:ring-2 focus:outline-none focus:ring-neutral-500 dark:bg-neutral-900 hover:text-black hover:bg-red-600 hover:bg-opacity-75 dark:focus:ring-red-600`}
               type="button"
-              onClick={handleDelete}
+              onClick={() => {
+                handleDelete(comment.comment_id, comment.author);
+              }}
             >
               <svg
                 className="w-4 h-4 bi bi-trash"

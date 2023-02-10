@@ -4,7 +4,12 @@ import Voting from "./common/Voting";
 import moment from "moment";
 import CommentInput from "./CommentInput";
 import Comments from "./Comments";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import {
+  useLoaderData,
+  useNavigate,
+  useParams,
+  Navigate,
+} from "react-router-dom";
 
 function date(value) {
   return moment(value).format("ddd, MMM Do, YYYY h:mm:ss A");
@@ -17,7 +22,11 @@ function ArticleDetails() {
   const navigate = useNavigate();
   const data = useLoaderData();
   const articleData = data.article[0];
-  const comments = data.comments;
+  let comments = data.comments;
+  if (!data.comments) {
+    comments = [];
+  }
+  const { topic } = useParams();
   const [commentData, setCommentData] = useState(comments);
   function handleTitleClick(category, article_id = "") {
     navigate(`/articles${category}`);
@@ -32,6 +41,11 @@ function ArticleDetails() {
     postNewComment(articleData.article_id, comment);
     setCommentData([newComment, ...comments]);
   };
+  console.log(topic);
+
+  if (topic !== articleData.topic) {
+    return <Navigate to="/error" />;
+  }
 
   return (
     <main className="pt-10 text-md md:text-base animated animatedFadeInUp fadeInUp">
@@ -100,7 +114,7 @@ function ArticleDetails() {
           </h2>
         </div>
         <CommentInput commentSubmit={commentSubmit} />
-        <Comments commentData={commentData} />
+        <Comments commentData={commentData} setCommentData={setCommentData} />
       </section>
     </main>
   );
