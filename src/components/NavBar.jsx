@@ -81,7 +81,7 @@ function NavBar() {
           <button
             data-collapse-toggle="mobile-menu-2"
             type="button"
-            className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            className="inline-flex items-center p-2 ml-1 text-sm text-violet-500 rounded-lg md:hidden hover:bg-violet-100 focus:outline-none focus:ring-2 focus:ring-violet-200 dark:text-violet-400 dark:hover:bg-violet-700 dark:focus:ring-violet-600"
             aria-controls="mobile-menu-2"
             aria-expanded="false"
             onClick={toggleMobileMenu}
@@ -109,35 +109,35 @@ function NavBar() {
         >
           <ul className="flex flex-col p-4 mt-4   md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 ">
             <li>
-              <span className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent  md:p-0 md:dark:hover:text-white dark:text-neutral-400">
+              <span className="block py-2 pl-3 pr-4 text-violet-700 rounded hover:bg-violet-100 md:hover:bg-transparent  md:p-0 dark:text-neutral-400 md:dark:hover:text-white dark:hover:bg-violet-700 dark:hover:text-plum md:dark:hover:bg-transparent dark:border-violet-700">
                 <Link to="/" onClick={toggleMobileMenu}>
                   Home
                 </Link>
               </span>
             </li>
             <li>
-              <span className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent  md:p-0 dark:text-neutral-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-plum md:dark:hover:bg-transparent dark:border-gray-700">
+              <span className="block py-2 pl-3 pr-4 text-violet-700 rounded hover:bg-violet-100 md:hover:bg-transparent  md:p-0 dark:text-neutral-400 md:dark:hover:text-white dark:hover:bg-violet-700 dark:hover:text-plum md:dark:hover:bg-transparent dark:border-violet-700">
                 <Link to="/articles" onClick={toggleMobileMenu}>
                   Articles
                 </Link>
               </span>
             </li>
             <li>
-              <span className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent  md:p-0 dark:text-neutral-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-plum md:dark:hover:bg-transparent dark:border-gray-700">
+              <span className="block py-2 pl-3 pr-4 text-violet-700 rounded hover:bg-violet-100 md:hover:bg-transparent  md:p-0 dark:text-neutral-400 md:dark:hover:text-white dark:hover:bg-violet-700 dark:hover:text-plum md:dark:hover:bg-transparent dark:border-violet-700">
                 <Link to="/users" onClick={toggleMobileMenu}>
                   Users
                 </Link>
               </span>
             </li>
             <li>
-              <span className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent  md:p-0 dark:text-neutral-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-plum md:dark:hover:bg-transparent dark:border-gray-700">
+              <span className="block py-2 pl-3 pr-4 text-violet-700 rounded hover:bg-violet-100 md:hover:bg-transparent  md:p-0 dark:text-neutral-400 md:dark:hover:text-white dark:hover:bg-violet-700 dark:hover:text-plum md:dark:hover:bg-transparent dark:border-violet-700">
                 <Link to="/about" onClick={toggleMobileMenu}>
                   About
                 </Link>
               </span>
             </li>
             <li>
-              <span className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent  md:p-0 dark:text-neutral-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-plum md:dark:hover:bg-transparent dark:border-gray-700">
+              <span className="block py-2 pl-3 pr-4 text-violet-700 rounded hover:bg-violet-100 md:hover:bg-transparent  md:p-0 dark:text-neutral-400 md:dark:hover:text-white dark:hover:bg-violet-700 dark:hover:text-plum md:dark:hover:bg-transparent dark:border-violet-700">
                 <Link to="/contact" onClick={toggleMobileMenu}>
                   Contact
                 </Link>

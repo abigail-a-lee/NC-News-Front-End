@@ -158,3 +158,54 @@
     background-color: #27272A;
     border: 0;
   }
+
+  .focus-in-contract-bck {
+	animation: focus-in-contract-bck 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.focus-in-contract-bck-delayed {
+	animation: focus-in-contract-bck 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation-delay: 1s;
+}
+
+ @keyframes focus-in-contract-bck {
+  0% {
+    letter-spacing: 1em;
+    transform: translateZ(300px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateZ(12px);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+.color-change-5x {
+	animation: color-change-5x 8s linear infinite alternate both;
+}
+
+
+ @keyframes color-change-5x {
+  0% {
+    background: #9cf5fc;
+    background-clip: text;
+  }
+  25% {
+    background: #dcaaf8;
+    background-clip: text;
+  }
+  50% {
+    background: #ff9191;
+    background-clip: text;
+  }
+  75% {
+    background: #ffe592;
+    background-clip: text;
+  }
+  100% {
+    background: #abff91;
+    background-clip: text;
+  }
+}

@@ -1,8 +1,9 @@
 import React from "react";
+import Sort from "./common/Sort";
 import { useLoaderData, useParams, Navigate } from "react-router-dom";
 import ArticleBox from "./ArticleBox";
 
-function ArticlesList() {
+function ArticlesList({ sortBy, setSortBy, setOrder }) {
   const { topic } = useParams();
   const data = useLoaderData();
 
@@ -12,9 +13,14 @@ function ArticlesList() {
 
   return (
     <main className="animated animatedFadeInUp fadeInUp">
-      <h1 className="select-none flex-row mx-auto text-shadow shadow-neutral-500 text-3xl text-neutral-300">
-        {topic === undefined ? "All articles" : topic}
-      </h1>
+      <header className="select-none flex mx-auto">
+        <h1 className="flex justify-start text-shadow shadow-neutral-500 text-3xl text-neutral-300">
+          {topic === undefined ? "All articles" : topic}
+        </h1>
+        <h1 className="flex justify-end">
+          <Sort sortBy={sortBy} setSortBy={setSortBy} />
+        </h1>
+      </header>
       <ArticleBox data={data} topic={topic} />
     </main>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Splash from "./components/Splash";
 import About from "./components/About";
@@ -13,15 +13,23 @@ import Error from "./components/Error";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import PageLayout from "./components/PageLayout";
 
+function useArticleLoader(topic, sortBy, order) {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getArticles(topic, sortBy, order);
+      setArticles(response.data.articles);
+    }
+    fetchData();
+  }, [topic, sortBy, order]);
+
+  return articles;
+}
+
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
-
-  /*   const navigate = useNavigate();
-  const handleTitleClick = (topic = "/all", id = "") => {
-    window.scrollTo(0, 0);
-    navigate(`/articles${topic}${id}`);
-  }; */
   const appRouter = createBrowserRouter([
     {
       element: (
@@ -39,7 +47,7 @@ function App() {
           element: <ArticlesList setIsLoading={setIsLoading} />,
           errorElement: <Navigate to="/error" />,
           loader: async () => {
-            const response = await getArticles();
+            const response = await getArticles("all");
             return response.data.articles;
           },
         },
@@ -91,48 +99,6 @@ function App() {
   ]);
 
   return <RouterProvider router={appRouter} />;
-
-  /* return (
-    <div className={`${isDarkMode ? "dark" : ""} max-w-screen `}>
-      <div className="pb-2 flex flex-col min-h-screen bg-white dark:bg-black md:dark:bg-gradient-to-br from-[#221425] to-black">
-        <div className="fixed z-50 w-screen drop-shadow-md">
-          <NavBar />
-        </div>
-        <div
-          className={`py-1 px-2 mt-20 mx-auto md:max-w-[900px] ${
-            loading ? "blur-sm" : ""
-          }`}
-        >
-          <Routes>
-            <Route path="/" element={<Splash />} />
-            <Route
-              path="/articles/:topic"
-              element={
-                <ArticlesList
-                  handleTitleClick={handleTitleClick}
-                  setLoading={setLoading}
-                  loading={loading}
-                />
-              }
-            />
-            <Route
-              path="/articles/:topic/:articleId"
-              element={
-                <ArticleDetails
-                  handleTitleClick={handleTitleClick}
-                  setLoading={setLoading}
-                  loading={loading}
-                />
-              }
-            />
-            <Route path="/users" element={<Users />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </div>
-      </div>
-    </div>
-  ); */
 }
 
 export default App;
