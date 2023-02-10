@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 function CommentInput({ commentSubmit }) {
+  const textBox = useRef();
   const [comment, setComment] = useState("");
   const [username, setUsername] = useState("You");
   const submitHandler = (event) => {
@@ -11,6 +12,7 @@ function CommentInput({ commentSubmit }) {
     };
     commentSubmit(commentRequest);
     setComment("");
+    textBox.current.value = "";
   };
 
   return (
@@ -21,6 +23,7 @@ function CommentInput({ commentSubmit }) {
             Your comment
           </label>
           <textarea
+            ref={textBox}
             id="comment"
             rows="6"
             onChange={(c) => setComment(c.target.value)}
