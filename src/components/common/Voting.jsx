@@ -1,10 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { patchArticleById } from "../../utils/api";
 
 function Voting({ id, votes }) {
-  const [votesNumber, setVotesNumber] = useState(votes);
+  const [votesNumber, setVotesNumber] = useState();
   const [isUpVoted, setIsUpVoted] = useState(false);
   const [isDownVoted, setIsDownVoted] = useState(false);
+
+  useEffect(() => {
+    setVotesNumber(votes);
+    setIsUpVoted(false);
+    setIsDownVoted(false);
+  }, [votes]);
 
   const upRef = useRef(null);
   const downRef = useRef(null);
@@ -69,7 +75,7 @@ function Voting({ id, votes }) {
         <div className="actions ">
           <div
             ref={upRef}
-            className="action plus"
+            className={`action plus ${isUpVoted ? "voted animated" : ""}`}
             onClick={() => handleClick("up")}
           >
             <svg
@@ -92,7 +98,7 @@ function Voting({ id, votes }) {
       <p className="select-none">{votesNumber}</p>
       <div
         ref={downRef}
-        className="action minus"
+        className={`action minus ${isDownVoted ? "voted animated" : ""}`}
         onClick={() => handleClick("down")}
       >
         <svg
