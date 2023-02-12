@@ -30,14 +30,14 @@ export default function Sort({ setData }) {
   }, [selected, topic, order]);
 
   return (
-    <div className="text-xs  fixed text-white z-20 right-20 md:right-0 top-0 w-24 flex flex-row">
+    <div className="text-xs fixed text-white z-20 md:right-[50%] top-0 w-24 flex flex-row">
       <Listbox
         value={selected}
         onChange={(value) => {
           setSelected(value);
         }}
       >
-        <div className="float w-36 mt-1">
+        <div className="float bg-black bg-opacity-20 px-2 rounded-lg w-36 mt-1">
           <Listbox.Button className="hover:cursor-pointer bg-black bg-opacity-0 text-right relative cursor-default rounded-lg py-2 pr-6 shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 text-xs">
             <span className="block truncate">{selected.name}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
@@ -90,7 +90,7 @@ export default function Sort({ setData }) {
           setOrder(value);
         }}
       >
-        <div className="float w-36 mt-1">
+        <div className="float bg-black bg-opacity-20 px-2 rounded-lg w-36 mt-1">
           <Listbox.Button className="hover:cursor-pointer bg-black bg-opacity-0 text-right relative cursor-default rounded-lg py-2 pr-6 shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 text-xs">
             <span className="block truncate">{order.name}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
@@ -106,12 +106,12 @@ export default function Sort({ setData }) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className=" text-white text-left absolute w-full mt-1 max-h-60 overflow-auto rounded-md bg-black bg-opacity-75 py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Listbox.Options className="text-white text-left absolute w-full mt-1 max-h-60 overflow-auto rounded-md bg-black bg-opacity-75 py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               {optionsOrder.map((option, optionIdx) => (
                 <Listbox.Option
                   key={optionIdx}
                   className={({ active }) =>
-                    `relative cursor-default select-none py-2 pr-4 ${
+                    `relative cursor-default select-none py-2 ${
                       active ? "bg-violet-100 text-violet-900" : "text-white"
                     }`
                   }

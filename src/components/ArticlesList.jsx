@@ -18,9 +18,9 @@ function ArticlesList({}) {
         <h1 className="flex justify-start text-shadow shadow-neutral-500 text-3xl text-neutral-300">
           {topic === undefined ? "All articles" : topic}
         </h1>
-        <h1 className="flex justify-end">
+        <aside>
           <Sort setData={setData} />
-        </h1>
+        </aside>
       </header>
       <ArticleBox data={data} topic={topic} />
     </main>
