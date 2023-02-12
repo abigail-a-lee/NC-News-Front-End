@@ -1,11 +1,12 @@
 import React from "react";
+import { useState } from "react";
 import Sort from "./common/Sort";
 import { useLoaderData, useParams, Navigate } from "react-router-dom";
 import ArticleBox from "./ArticleBox";
 
-function ArticlesList({ sortBy, setSortBy, setOrder }) {
+function ArticlesList({}) {
   const { topic } = useParams();
-  const data = useLoaderData();
+  const [data, setData] = useState(useLoaderData());
 
   if (data.length === 0) {
     return <Navigate to="/error" />;
@@ -18,7 +19,7 @@ function ArticlesList({ sortBy, setSortBy, setOrder }) {
           {topic === undefined ? "All articles" : topic}
         </h1>
         <h1 className="flex justify-end">
-          <Sort sortBy={sortBy} setSortBy={setSortBy} />
+          <Sort setData={setData} />
         </h1>
       </header>
       <ArticleBox data={data} topic={topic} />

@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import { getArticles } from "../../utils/api";
 
 const options = [
   { name: "Date", value: "created_at" },
@@ -9,10 +10,17 @@ const options = [
   { name: "Comments", value: "comment_count" },
 ];
 
-export default function Sort({}) {
-  const { topic } = useParams();
+export default function Sort({setData}) {
   const [selected, setSelected] = useState(options[0]);
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getArticles("all", selected["value"]);
+      setData(data.data.articles);
+    }
+
+    getData();
+  }, [selected])
 
   return (
     <div className="text-xs fixed text-white z-20 right-20 md:right-0 top-0 w-24 flex flex-row">

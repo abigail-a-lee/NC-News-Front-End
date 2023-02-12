@@ -13,20 +13,6 @@ import Error from "./components/Error";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import PageLayout from "./components/PageLayout";
 
-function useArticleLoader(topic, sortBy, order) {
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await getArticles(topic, sortBy, order);
-      setArticles(response.data.articles);
-    }
-    fetchData();
-  }, [topic, sortBy, order]);
-
-  return articles;
-}
-
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
