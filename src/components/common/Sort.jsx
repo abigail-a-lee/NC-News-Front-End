@@ -12,15 +12,16 @@ const options = [
 
 export default function Sort({ setData }) {
   const [selected, setSelected] = useState(options[0]);
+  const { topic } = useParams();
 
   useEffect(() => {
     const getData = async () => {
-      const data = await getArticles("all", selected["value"]);
+      const data = await getArticles(topic, selected["value"]);
       setData(data.data.articles);
     };
 
     getData();
-  }, [selected]);
+  }, [selected, topic]);
 
   return (
     <div className="text-xs  fixed text-white z-20 right-20 md:right-0 top-0 w-24 flex flex-row">
