@@ -10,21 +10,20 @@ const options = [
   { name: "Comments", value: "comment_count" },
 ];
 
-export default function Sort({setData}) {
+export default function Sort({ setData }) {
   const [selected, setSelected] = useState(options[0]);
 
   useEffect(() => {
     const getData = async () => {
       const data = await getArticles("all", selected["value"]);
       setData(data.data.articles);
-    }
+    };
 
     getData();
-  }, [selected])
+  }, [selected]);
 
   return (
     <div className="text-xs fixed text-white z-20 right-20 md:right-0 top-0 w-24 flex flex-row">
-      <h5 className="pr-2 text-xs">Sort</h5>
       <Listbox
         value={selected}
         onChange={(value) => {
