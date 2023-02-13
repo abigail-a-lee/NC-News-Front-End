@@ -4,7 +4,7 @@ This is the front-end project for the NC-News back-end API. It is a Reddit-inspi
 
 This project was created as part of a one-week solo sprint while I was a student at Northcoders.
 
-You can try out a live version of the app at [here](https://abi-frontend.onrender.com).
+You can try out a live version of the app [here](https://abi-frontend.onrender.com).
 
 ## Installation
 
