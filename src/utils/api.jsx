@@ -11,12 +11,13 @@ const axiosClient = axios.create({
 export function getArticles(
   topic = "all",
   sort = "created_at",
-  order = "desc"
+  order = "desc",
+  page = 1
 ) {
   return axiosClient.get(
     `/articles${
       topic === "all" ? "?" : "?topic=" + topic + "&"
-    }sort_by=${sort}&order=${order}`
+    }sort_by=${sort}&order=${order}&p=${page}`
   );
 }
 
