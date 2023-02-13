@@ -2,6 +2,8 @@
 
 This is the front-end project for the NC-News back-end API. It is a Reddit-inspired website where users can view and interact with articles, topics, and post comments. The front end is built using React, with Axios for making API requests, and Reach Router for client-side routing.
 
+This project was created as part of a one-week solo sprint while I was a student at Northcoders.
+
 You can try out a live version of the app at [here](https://abi-frontend.onrender.com).
 
 ## Installation
