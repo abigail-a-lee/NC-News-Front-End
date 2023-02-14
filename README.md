@@ -32,6 +32,7 @@ This project requires the following dependencies:
 - `react`: for building the UI
 - `react-dom`: for rendering the UI
 - `react-router-dom`: for client-side routing
+- `react-infinite-scroller`: for continuous loading of paginated API on scroll
 - `prop-types`: for defining prop types
 - `tailwindcss`: for styling the UI
 
