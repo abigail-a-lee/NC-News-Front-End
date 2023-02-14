@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import errorPic from "./common/error.png";
+import errorPic from "./common/error.webp";
 
 function Error() {
   return (
