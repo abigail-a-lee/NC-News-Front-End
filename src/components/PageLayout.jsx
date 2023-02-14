@@ -12,7 +12,7 @@ function PageLayout({ isDarkMode, isLoading, setIsLoading }) {
   return (
     <div className={`${isDarkMode ? "dark" : ""} max-w-screen `}>
       <div className="pb-2 flex flex-col min-h-screen bg-white dark:bg-black md:dark:bg-gradient-to-br from-[#221425] to-black">
-        <div className="fixed z-50 w-screen drop-shadow-md">
+        <div className="flex-grow-0 flex-shrink-0 top-0 left-0 right-0 fixed z-[80] w-screen drop-shadow-md">
           <NavBar />
         </div>
         <div

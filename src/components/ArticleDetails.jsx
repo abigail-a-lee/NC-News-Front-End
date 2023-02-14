@@ -42,9 +42,9 @@ function ArticleDetails() {
   }
 
   return (
-    <main className="pt-10 text-md md:text-base animated animatedFadeInUp fadeInUp">
+    <main className="pt-10 text-md md:text-base animated animatedFadeInUp fadeInUp -mt-14 md:-mt-10">
       <section className="flex flex-row drop-shadow-md pt-3 pb-6 dark:bg-neutral-900 rounded-md">
-        <aside className="flex-col mx-1 min-w-[40px] text-neutral-400 place-content-center text-center">
+        <aside className="flex-col md:mx-1 min-w-[30px] md:min-w-[40px] text-neutral-400 place-content-center text-center">
           <div className="absolute">
             <Voting id={articleData.article_id} votes={articleData.votes} />
           </div>

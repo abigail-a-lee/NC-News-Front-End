@@ -1,5 +1,6 @@
 .actions {
     display: flex;
+    
   }
   
   .action {
@@ -18,10 +19,9 @@
     text-align: center;
     cursor: pointer;
     color: #323232;
-    
+
     &.animated {
       --circle-anchor: 48px;
-  
       &::before,
       &::after {
         visibility: visible;
@@ -31,16 +31,12 @@
       }
       &::after {
         opacity: 0;
+        top: 50px;
+        left: 8px;
       }
     }
     
-    &.plus::before {
-      content: '+1';
-    }
-  
-    &.minus::before {
-      content: '-1';
-    }
+
   
     &.voted {
       &.plus {
@@ -67,6 +63,7 @@
       position: absolute;
       visibility: hidden;
       pointer-events: none;
+      
     }
   
     /* Bubble */
@@ -127,7 +124,7 @@
     }
     100% {
       opacity: 0;
-      transform: translate(-0%, -20px);
+      transform: translate(-0%, -15px);
     }
   }
 

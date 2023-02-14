@@ -11,7 +11,7 @@ function Splash() {
           Welcome.
         </h1>
       </header>
-      <article className="m-2 text-2xl text-white text-left">
+      <article className="m-2 text-base md:text-2xl text-white text-left">
         <p
           className="focus-in-contract-bck bg-black p-4 rounded-lg bg-opacity-25 my-2"
           style={{ animationDelay: "1s" }}
