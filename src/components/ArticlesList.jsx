@@ -68,7 +68,7 @@ function ArticlesList() {
           That's all we could find!
         </h1>
         <button
-          className="hover:text-black hover:bg-violet-400 bg-violet-800 bg-opacity-50 p-2 rounded-md hover:cursor-pointer"
+          className="text-white mt-2 hover:text-black hover:bg-violet-400 bg-violet-800 bg-opacity-50 p-2 rounded-md hover:cursor-pointer"
           onClick={() => {
             window.scrollTo(0, 0);
           }}
