@@ -64,7 +64,7 @@ function ArticlesList() {
           hasMore ? "hidden" : ""
         } flex flex-col mx-auto text-center items-center`}
       >
-        <h1 className=" text-shadow shadow-neutral-500 text-3xl  text-neutral-300 py-8">
+        <h1 className="text-shadow shadow-neutral-500 text-3xl pb-2 text-neutral-300">
           That's all we could find!
         </h1>
         <button

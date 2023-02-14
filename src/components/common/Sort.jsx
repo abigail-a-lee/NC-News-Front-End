@@ -47,7 +47,7 @@ export default function Sort({
   }, [getData]);
 
   return (
-    <div className="text-xs fixed text-white z-20 md:right-[50%] top-0 w-24 flex flex-row">
+    <div className="text-xs fixed text-white z-20 right-[25%] md:right-[50%] top-0 w-24 flex flex-row">
       <Listbox
         value={selectedSort}
         onChange={(value) => {
