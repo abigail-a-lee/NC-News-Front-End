@@ -22,7 +22,7 @@ function ArticleBox({ data, category }) {
         {data.map((article, index) => (
           <div
             key={index}
-            className=" bg-neutral-900 flex flex-row my-4 ring-1 ring-neutral-800 hover:ring-neutral-600 rounded-md overflow-hidden subtleHoverable"
+            className=" bg-neutral-900 flex flex-row my-2.5 drop-shadow-md ring-1 ring-neutral-800 hover:ring-neutral-600 rounded-md overflow-hidden subtleHoverable"
           >
             <aside className="flex-col bg-[#0f1010] min-w-[35px] pt-3 text-neutral-400 place-content-center text-center">
               <div className="absolute">
