@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
+import { useMemo, Fragment, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
@@ -15,31 +15,48 @@ const optionsOrder = [
   { name: "Ascending", value: "asc" },
 ];
 
-export default function Sort({ setData }) {
-  const [order, setOrder] = useState(optionsOrder[0]);
-  const [selected, setSelected] = useState(optionsSort[0]);
+export default function Sort({
+  setSort,
+  setOrder,
+  setData,
+  setPage,
+  setHasMore,
+}) {
+  const [selectedOrder, setSelectedOrder] = useState(optionsOrder[0]);
+  const [selectedSort, setSelectedSort] = useState(optionsSort[0]);
   const { topic } = useParams();
 
-  useEffect(() => {
-    const getData = async () => {
-      const data = await getArticles(topic, selected["value"], order["value"]);
+  const getData = useMemo(
+    () => async () => {
+      const data = await getArticles(
+        topic,
+        selectedSort["value"],
+        selectedOrder["value"]
+      );
       setData(data.data.articles);
-    };
+      setSort(selectedSort["value"]);
+      setOrder(selectedOrder["value"]);
+      setPage(1);
+      setHasMore(true);
+    },
+    [topic, selectedSort, selectedOrder, setData, setSort, setOrder]
+  );
 
+  useEffect(() => {
     getData();
-  }, [selected, topic, order]);
+  }, [getData]);
 
   return (
-    <div className="text-xs fixed text-white z-20 md:right-[50%] top-0 w-24 flex flex-row">
+    <div className="text-xs fixed text-white z-20 right-[25%] md:right-[50%] top-0 w-24 flex flex-row">
       <Listbox
-        value={selected}
+        value={selectedSort}
         onChange={(value) => {
-          setSelected(value);
+          setSelectedSort(value);
         }}
       >
         <div className="float bg-black bg-opacity-20 px-2 rounded-lg w-36 mt-1">
           <Listbox.Button className="hover:cursor-pointer bg-black bg-opacity-0 text-right relative cursor-default rounded-lg py-2 pr-6 shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 text-xs">
-            <span className="block truncate">{selected.name}</span>
+            <span className="block truncate">{selectedSort.name}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
               <ChevronUpDownIcon
                 className="h-4 w-4 text-gray-400"
@@ -85,14 +102,14 @@ export default function Sort({ setData }) {
         </div>
       </Listbox>
       <Listbox
-        value={order}
+        value={selectedOrder}
         onChange={(value) => {
-          setOrder(value);
+          setSelectedOrder(value);
         }}
       >
         <div className="float bg-black bg-opacity-20 px-2 rounded-lg w-36 mt-1">
           <Listbox.Button className="hover:cursor-pointer bg-black bg-opacity-0 text-right relative cursor-default rounded-lg py-2 pr-6 shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 text-xs">
-            <span className="block truncate">{order.name}</span>
+            <span className="block truncate">{selectedOrder.name}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
               <ChevronUpDownIcon
                 className="h-4 w-4 text-gray-400"
